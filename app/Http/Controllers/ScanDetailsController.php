@@ -4,38 +4,83 @@ namespace App\Http\Controllers;
 
 use App\Models\Scan;
 
+/**
+ * Class handles the get APIs for sending details of diff
+ *
+ * @category Controllers
+ * @author   Manish Verma <mverma16@outlook.com>
+ */
 class ScanDetailsController extends Controller
 {
-    private function getFileUpdatesDetails(Scan $scan)
+    /**
+     * Method returns updated file records array linked to given Scan
+     *
+     * @param  Scan  $scan
+     * @return Array
+     */
+    private function getFileUpdatesDetails(Scan $scan):array
     {
-        $changedFiles = $scan->fileUpdates()->orderBy('filename');
-        if(!$changedFiles->get()) return  [];
-
-        return $changedFiles->get(['type', 'filename', 'path', 'modification_type'])->toArray();
+        return $this->getScanRelations(
+            $scan,
+            'fileUpdates',
+            ['type', 'filename', 'path', 'modification_type'],
+            'filename'
+        );
     }
 
-    private function getFileContentUpdateDetails(Scan $scan)
+    /**
+     * Method returns modified file records array linked to given Scan
+     *
+     * @param  Scan  $scan
+     * @return Array
+     */
+    private function getFileContentUpdateDetails(Scan $scan):array
     {
-        $changedContents = $scan->contentUpdates()->orderBy('file_path');
-        if(!$changedContents->get()) return  [];
-
-        return $changedContents->get(['file_path'])->toArray();
+        return $this->getScanRelations(
+            $scan,
+            'contentUpdates',
+            ['id', 'file_path'],
+            'file_path'
+        );
     }
 
+    /**
+     * Function to fetch and return records of given relation
+     *
+     * @param  Scan    $scan
+     * @param  string  $relation
+     * @param  array   $getColunms
+     * @param  string  $orderBy
+     * @return array
+     */
+    private function getScanRelations(Scan $scan, string $relation, array $getColunms, string $orderBy = 'filename'):array
+    {
+        $relatedRecords = $scan->$relation()->orderBy($orderBy);
+        if(!$relatedRecords->get()) return [];
+        
+        return $relatedRecords->get($getColunms)->toArray();
+    }
+
+    /**
+     * Method returns the detauls of given scan 
+     *
+     * @param  Scan  $scan
+     * @return Illuminate\Http\JsonResponse
+     */
     public function getScanResults(Scan $scan)
     {
         $result = $scan->toArray();
-        // if(in_array($request->input('scan_type', "complete"), ["complete", "file_changes"])) {
         $result = array_merge($result, ['file_updated' => $this->getFileUpdatesDetails($scan)]);
-        // }
-
-        // if(in_array($request->input('scan_type', "complete"), ["complete", "content_changes"])) {
         $result = array_merge($result, ['file_changed' => $this->getFileContentUpdateDetails($scan)]);
-        // }
 
         return successResponse("", $result);
     }
 
+    /**
+     * Method returns the detauls of latest completed scan 
+     *
+     * @return Illuminate\Http\JsonResponse
+     */
     public function getLatestScanResults()
     {
         if(Scan::get()->last()) {
@@ -45,6 +90,11 @@ class ScanDetailsController extends Controller
         return errorResponse("No scans found");
     }
 
+    /**
+     * Method to get list of available versions stored in versions directory
+     * 
+     * @return Illuminate\Http\JsonResponse
+     */
     public function getAvailbleVersionForScan()
     {
         $result = [];
@@ -54,8 +104,13 @@ class ScanDetailsController extends Controller
         return successResponse("", $result);
     }
 
+    /**
+     * Method to get list of completed scans
+     * 
+     * @return Illuminate\Http\JsonResponse
+     */
     public function getScanList()
     {
-        return successResponse("", Scan::get()->toArray());
+        return successResponse("", Scan::where('is_scan_comleted',1)->get()->toArray());
     }
 }

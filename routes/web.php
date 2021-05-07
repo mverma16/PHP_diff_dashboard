@@ -30,7 +30,7 @@ $router->group(['prefix' => 'api'], function ($router) {
 		'as' => 'availble-versions', 'uses' => 'ScanDetailsController@getAvailbleVersionForScan'
 	]);
 
-	$router->get('start-scan', [
+	$router->post('start-scan', [
 		'as' => 'availble-versions', 'uses' => 'ScanController@startScanning'
 	]);
 });
