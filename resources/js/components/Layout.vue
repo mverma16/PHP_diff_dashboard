@@ -18,15 +18,7 @@
   		</div>
         <router-view></router-view>
 		<footer class="footer">
-            <p>&copy; 2021 copyright | Epicate, IND.</p>
+            <p>&copy; 2021 copyright | Epicate : mverma16@outlook.com, IND.</p>
         </footer>
 	</div>
 </template>
-<script type="text/javascript">
-	export default {
-        // mounted: function () {
-        //     $('[data-toggle="tooltip"]').tooltip();
-        //     alert('here');
-        // }
-	}
-</script>

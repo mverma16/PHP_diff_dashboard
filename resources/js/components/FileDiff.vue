@@ -1,8 +1,8 @@
 <style scoped>
-table, tr, td {
-  padding: 5px;
-  color: grey;
-}
+    table, tr, td {
+        padding: 5px;
+        color: grey;
+    }
 </style>
 <template>
 	<div v-if="loading" class="jumbotron">
@@ -27,7 +27,7 @@ table, tr, td {
     						<tr v-for="(line, number) in value.modified">
     							<td style="text-align: left;">#{{number}}</td>
     							<td>±</td>
-    							<td>Changed <span style="color: burlywood">"{{line.compared_version}}"</span> to <span style="color: burlywood">"{{line.compared_version}}"</span></td>
+    							<td>Changed <span style="color: burlywood">"{{line.compared_version}}"</span> to <span style="color: burlywood">"{{line.base_version}}"</span></td>
     						</tr>
     					</table>
     					</div>
@@ -57,17 +57,14 @@ table, tr, td {
         },
 
         methods: {
-        	getResult(id)
-        	{
+        	getResult(id) {
         		let $api = this.diffType=="diffFile"?"api/get-diff-by-id/" : "api/get-diff-by-scan/";
         		this.loading=true;
         		axios.get($api+id)
                 .then(response => {
-                	console.log('data' in response.data);
                     if('data' in response.data) {
                     	this.diffList = response.data.data;
                     }
-                //console.log(this.scanResult);
                 }) // code to run on success
                 .catch(error => {
 

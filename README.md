@@ -1,24 +1,28 @@
-# Lumen PHP Framework
+# PHP Diff Dashboard
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+Simple project created for learning to make Vue.js apps integrated with RESTful APIs created in Lumen. The project has a dashboard which shows the diff in the files after comparing two different folders. The folders to compare can be copied in "storage/versions" directory under the root of the project. From the dashboard you can scan the directories by making one a "base directory" and the other as "comparing directory". Once the scan is complete you can see the scan result from the scan list. By default, the dashboard shows the results of the last scan. The diff result contains
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+- Files added in the base directory
+- Files removed in the base directory
+- Files modified in the base directory
+- Diff of the modified files. Changes show the updates in content based on base directory files.
 
-## Official Documentation
+## Setup
+- place the project on your server's root directory
+- create *public* directory available in project root as the document root for the server host
+- run `composer install` to install Lumen and vendor packages
+- create `.env` file under the project root directory
+- update your database details in `.env`
+- Put a random string of 32 characters as *APP_KEY* value in `.env`
+- run `php project_root/artisan migrate` command in CLI to migrate required tables in the database
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Understand code structure
+- The project route/APIs are placed in `routes/web.php`
+- The controller class are available `app/Http/Controllers`
+- Route binding is enabled for lumen
+- Vue components are placed under `resources/js`
 
-## Contributing
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Limitations
+- Scanning large directories may result in a time out
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

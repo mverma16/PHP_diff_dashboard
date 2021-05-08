@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Scan;
 
 /**
- * Class handles the get scanning of the diles and directories
+ * Class handles fetching of the details of scanned files and directories
  *
  * @category Controllers
  * @author   Manish Verma <mverma16@outlook.com>
@@ -62,7 +62,7 @@ class ScanDetailsController extends Controller
     }
 
     /**
-     * Method returns the detauls of given scan 
+     * Method returns the details of given scan 
      *
      * @param  Scan  $scan
      * @return Illuminate\Http\JsonResponse
@@ -77,7 +77,7 @@ class ScanDetailsController extends Controller
     }
 
     /**
-     * Method returns the detauls of latest completed scan 
+     * Method returns the details of latest completed scan 
      *
      * @return Illuminate\Http\JsonResponse
      */

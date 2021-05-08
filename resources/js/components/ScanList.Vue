@@ -46,9 +46,11 @@
 		beforeMount() {
 			this.getScanList();
 		},
+
 		mounted: function () {
             $('[data-toggle="tooltip"]').tooltip();
         },
+
 		methods: {
 			getScanList()
 			{
@@ -57,7 +59,6 @@
             		if("data" in response.data) {
                         this.scanList = response.data.data
                     }
-              		
             	}) // code to run on success
             	.catch(error => {
 

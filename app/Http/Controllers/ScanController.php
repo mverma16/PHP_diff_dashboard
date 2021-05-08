@@ -9,7 +9,7 @@ use \Carbon\Carbon;
 use Throwable;
 
 /**
- * Class handles the get APIs for sending details of diff
+ * Class handles the scanning of diff in files and directories
  *
  * @category Controllers
  * @author   Manish Verma <mverma16@outlook.com>
@@ -62,7 +62,16 @@ class ScanController extends Controller
 		}
 	}
 
-	private function scanAndStoreFileUpdatesToDB($scan, string $baseDir, string $compareWith)
+	/**
+	 * Method recursively scans base and comparing directories to stores details of added and
+	 * deleted files in base version into database.
+	 *
+	 * @param   Scan    $scan
+	 * @param   string  $baseDir
+	 * @param   string  $compareWith
+	 * @return  void
+	 */
+	private function scanAndStoreFileUpdatesToDB($scan, string $baseDir, string $compareWith):void
 	{
 		//scan and prepare list of base version files and dir
 		$this->scanDirectoryRecursively(
@@ -119,11 +128,11 @@ class ScanController extends Controller
 	}
 
 	/**
-	 * Method checks given subpaths are existing diirectories or not
+	 * Method checks given subpaths are existing directories or not
 	 *
 	 * @param  array   $subPaths
 	 * @return boolean            return false if any given subirectory does not
-	 *                            exist unser storage/versions
+	 *                            exist under storage/versions
 	 */
 	private function checkGivenDirectoriesExistOnSubPaths(array $subPaths):bool
 	{
@@ -135,7 +144,7 @@ class ScanController extends Controller
 	}
 
 	/**
-	 * Method formates the given file array in format to be bulk inseted in database
+	 * Method formates the given file array in format to be bulk instead in database
 	 *
 	 * @param   array
 	 * @param   string
@@ -191,7 +200,7 @@ class ScanController extends Controller
 
 	/**
 	 * Method combines the given subpaths and return resolved path with complete storage
-	 * direcotry
+	 * directory
 	 *
 	 * @param   array  $subPaths  array of subpaths
 	 * @return  string            resolved path

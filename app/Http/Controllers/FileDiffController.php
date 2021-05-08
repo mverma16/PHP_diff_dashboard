@@ -52,7 +52,7 @@ class FileDiffController extends Controller
 	 * added lines, removed lines and modified lines in base version.
 	 *
 	 * @param   ContentUpdate $contentUpdate
-	 * @return  arrat                         empty array or ['filename' =>[
+	 * @return  array                         empty array or ['filename' =>[
 	 															'added'=>[
 	 															    linenumber => linecontent
 	 																....
@@ -94,7 +94,7 @@ class FileDiffController extends Controller
 	}
 
 	/**
-	 * Method iterates over each line of the saved cotent of the file considering
+	 * Method iterates over each line of the saved content of the file considering
 	 * each file will contain \n as end of line and returns an array of line number
 	 * and line content
 	 *

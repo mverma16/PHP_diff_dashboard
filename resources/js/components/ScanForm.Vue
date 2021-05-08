@@ -26,12 +26,12 @@
                         <option v-for="file in fileList" :value="file.name">{{file.name}}</option>
                     </select>
                 </div>
-                </div>
-                <br>
-                <div class="row">
-                    <p><a v-on:click="starScan" class="btn btn-success pull-right" role="button">Start Scan</a></p>
-                </div>
-                <br>
+            </div>
+            <br>
+            <div class="row">
+                <p><a v-on:click="starScan" class="btn btn-success pull-right" role="button">Start Scan</a></p>
+            </div>
+            <br>
         </div>
         <div v-else>
             <p class="lead">Oops looks like the files have not been uploaded yet.</p>

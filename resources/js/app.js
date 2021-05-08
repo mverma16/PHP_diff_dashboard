@@ -22,12 +22,12 @@ Vue.mixin({
 })
 
 const routes = [
-	{path:"/", component:App},
-	{path:"/scan-result/:id", component:App, props: true},
+	{path:"/", component:App, name:"latest"},
+	{path:"/scan-result/:id", component:ScanResult, name:"scan-result"},
 	{path:"/scan-list", component:ScanList},
 	{path:"/process-scan", component:ScanForm},
-  {path:"/modified-files/:id", component:FileDiff, name:'diffScan'},
-  {path:"/file-diff/:id", component:FileDiff, name:'diffFile'}
+    {path:"/modified-files/:id", component:FileDiff, name:'diffScan'},
+    {path:"/file-diff/:id", component:FileDiff, name:'diffFile'}
 ]
 
 const router = new VueRouter({
