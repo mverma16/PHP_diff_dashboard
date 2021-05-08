@@ -24,5 +24,9 @@
 </template>
 <script type="text/javascript">
 	export default {
+        // mounted: function () {
+        //     $('[data-toggle="tooltip"]').tooltip();
+        //     alert('here');
+        // }
 	}
 </script>

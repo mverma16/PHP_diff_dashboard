@@ -8,7 +8,7 @@
 
 **[View Live Preview](https://blackrockdigital.github.io/startbootstrap-new-age/)**
 
-## Status
+## Status2
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-new-age/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/startbootstrap-new-age.svg)](https://www.npmjs.com/package/startbootstrap-new-age)

@@ -54,7 +54,7 @@ class ScanController extends Controller
 			//scan files/directories for missing or added files
 			$this->scanAndStoreFileUpdatesToDB($scan, $baseDir, $compareWith);
 			//scan files for missing or added files
-			$this->scanAndStoreContentUpdatesToDB($scan);
+			$this->scanAndStoreContentUpdatesToDB($scan, $baseDir, $compareWith);
 			$scan->update(['is_scan_comleted' => 1]);
 			return successResponse('Scan completed successfully. Navigate to latest or scan list to see the results.');
 		} catch(Throwable $e) {
@@ -97,15 +97,15 @@ class ScanController extends Controller
 	 * @param   Scan  $scan
 	 * @return  void
 	 */
-	private function scanAndStoreContentUpdatesToDB(Scan $scan):void
+	private function scanAndStoreContentUpdatesToDB(Scan $scan, string $baseDir, string $compareWith):void
 	{
 		$commonFlies = array_intersect(array_keys($this->flbv), array_keys($this->flcwv));
 		foreach ($commonFlies as $file) {
-			if(is_file($this->getPathWithStorage(["v2", $file])))
+			if(is_file($this->getPathWithStorage([$baseDir, $file])))
 			{
 				//get file contents
-				$baseFileContent = file_get_contents($this->getPathWithStorage(["v2", $file]));
-				$comparedFileContent = file_get_contents($this->getPathWithStorage(["v1", $file]));
+				$baseFileContent = file_get_contents($this->getPathWithStorage([$baseDir, $file]));
+				$comparedFileContent = file_get_contents($this->getPathWithStorage([$compareWith, $file]));
 				//compare file contents and store in database
 				if($baseFileContent != $comparedFileContent) {
 					$scan->contentUpdates()->updateOrCreate(["file_path" => $file],[

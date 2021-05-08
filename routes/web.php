@@ -33,6 +33,14 @@ $router->group(['prefix' => 'api'], function ($router) {
 	$router->post('start-scan', [
 		'as' => 'availble-versions', 'uses' => 'ScanController@startScanning'
 	]);
+
+	$router->get('get-diff-by-scan/{scan}', [
+		'as' => 'diff-of-scan', 'uses' => 'FileDiffController@getDiffOfScan'
+	]);
+
+	$router->get('get-diff-by-id/{contentUpdate}', [
+		'as' => 'diff-of-file', 'uses' => 'FileDiffController@getDiffOfFile'
+	]);
 });
 
 $router->get('/{route:.*}/', function ()  {

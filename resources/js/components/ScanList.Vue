@@ -22,7 +22,7 @@
         				<td>{{value.is_scan_comleted?"Completed":"Pending/Failed"}}</td>
         				<td>{{localtime(value.created_at)}}</td>
         				<td>{{localtime(value.updated_at)}}</td>
-        				<td><router-link :to="{path: '/scan-result/' + value.id}" ><span class="glyphicon glyphicon-eye-open" title="Click to view scan results"></span></router-link></td>
+        				<td><router-link :to="{path: '/scan-result/' + value.id}" data-toggle="tooltip" title="Click to view scan results"><span class="glyphicon glyphicon-eye-open"></span></router-link></td>
         			</tr>
 			      </tbody>
 		    </table>
@@ -46,7 +46,9 @@
 		beforeMount() {
 			this.getScanList();
 		},
-
+		mounted: function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        },
 		methods: {
 			getScanList()
 			{

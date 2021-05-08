@@ -4,6 +4,7 @@ import App from './components/App.vue';
 import ScanResult from './components/ScanResult.vue';
 import ScanList from './components/ScanList.vue';
 import ScanForm from './components/ScanForm.vue';
+import FileDiff from './components/FileDiff.vue';
 
 Vue.use(VueRouter);
 Vue.component("entry-point", require('./components/Layout.vue'));
@@ -24,7 +25,9 @@ const routes = [
 	{path:"/", component:App},
 	{path:"/scan-result/:id", component:App, props: true},
 	{path:"/scan-list", component:ScanList},
-	{path:"/process-scan", component:ScanForm}
+	{path:"/process-scan", component:ScanForm},
+  {path:"/modified-files/:id", component:FileDiff, name:'diffScan'},
+  {path:"/file-diff/:id", component:FileDiff, name:'diffFile'}
 ]
 
 const router = new VueRouter({

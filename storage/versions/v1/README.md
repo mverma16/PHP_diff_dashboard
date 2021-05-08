@@ -8,12 +8,12 @@
 
 **[View Live Preview](https://blackrockdigital.github.io/startbootstrap-new-age/)**
 
-## Status
+## Status1
 
 
 ## Download and Installation
 
-To begin using this template, choose one of the following options to get started:
+To begin using this templates, choose one of the following options to get started:
 * [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/new-age/)
 * Install via npm: `npm i startbootstrap-new-age`
 * Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-new-age.git`

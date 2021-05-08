@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Scan;
 
 /**
- * Class handles the get APIs for sending details of diff
+ * Class handles the get scanning of the diles and directories
  *
  * @category Controllers
  * @author   Manish Verma <mverma16@outlook.com>
