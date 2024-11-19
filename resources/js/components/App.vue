@@ -6,7 +6,7 @@
 <script>
     export default {
   		components: {
-			'scan-result': require('./ScanResult.vue'),
+			'scan-result': require('./ScanResult.vue').default,
 		}
     }
 </script>
