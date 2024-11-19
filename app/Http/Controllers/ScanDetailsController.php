@@ -57,12 +57,12 @@ class ScanDetailsController extends Controller
     {
         $relatedRecords = $scan->$relation()->orderBy($orderBy);
         if(!$relatedRecords->get()) return [];
-        
+
         return $relatedRecords->get($getColunms)->toArray();
     }
 
     /**
-     * Method returns the details of given scan 
+     * Method returns the details of given scan
      *
      * @param  Scan  $scan
      * @return Illuminate\Http\JsonResponse
@@ -77,7 +77,7 @@ class ScanDetailsController extends Controller
     }
 
     /**
-     * Method returns the details of latest completed scan 
+     * Method returns the details of latest completed scan
      *
      * @return Illuminate\Http\JsonResponse
      */
@@ -92,7 +92,7 @@ class ScanDetailsController extends Controller
 
     /**
      * Method to get list of available versions stored in versions directory
-     * 
+     *
      * @return Illuminate\Http\JsonResponse
      */
     public function getAvailbleVersionForScan()
@@ -106,7 +106,7 @@ class ScanDetailsController extends Controller
 
     /**
      * Method to get list of completed scans
-     * 
+     *
      * @return Illuminate\Http\JsonResponse
      */
     public function getScanList()

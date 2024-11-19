@@ -7,7 +7,7 @@ import ScanForm from './components/ScanForm.vue';
 import FileDiff from './components/FileDiff.vue';
 
 Vue.use(VueRouter);
-Vue.component("entry-point", require('./components/Layout.vue'));
+Vue.component("entry-point", require('./components/Layout.vue').default);
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.baseURL = document.head.querySelector('meta[name="api-base-url"]').content;
